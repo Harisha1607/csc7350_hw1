@@ -13,14 +13,17 @@ public class UniqueSequences{
                     System.out.println("Usage: UniqueSequences <filename>");  
                     System.exit(1);  
             }  
-
+    
             System.out.println("Opening file " + args[0] + " ...");
-
-            LinkedHashMap<String, ProteinSequence> a;
-            a = FastaReaderHelper.readFastaProteinSequence(new File(args[0]));
-
-            HashSet<String> hs = new HashSet<>(a.keySet());
+    
+            LinkedHashMap<String, ProteinSequence> a = FastaReaderHelper.readFastaProteinSequence(new File(args[0]));
+    
+            HashSet<String> hs = new HashSet<>();
+            
+            for (ProteinSequence sequence : a.values()) {
+                hs.add(sequence.toString());
+            }   
+    
             System.out.println(hs.size()+" unique sequences found!");
-
     }
 }
